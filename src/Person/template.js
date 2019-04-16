@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person.js';
+import person from './Person/Person.js';
 
 class App extends Component {
 
@@ -14,6 +15,16 @@ class App extends Component {
 
   };
 
+  switchNameHandler = (newName) => {
+    //console.log("was clicked!");
+    this.setState({
+      persons: [
+        { name: 'Omar Adel Ramzy', age: "23" },
+        { name: 'Hussam Ashraf', age: "25" },
+        { name: newName, age: "24" }
+      ]
+    });
+  }
 
   nameChangeHandler = (event) => {
     this.setState({
@@ -30,16 +41,21 @@ class App extends Component {
   togglePersonsHandler = () => {
     const doseShow = this.state.showPersons ;
     this.setState({showPersons: !doseShow}) ;
-
   }
 
-  deletePersonHandler= (personIndex) =>{
-    const persons = this.state.persons;
-    persons.splice(personIndex, 1) ;
-    this.setState({persons:persons})
+  // <button className="btn btn-danger" onClick={this.switchNameHandler.bind(this , 'Ahmed')} >Switch names</button>
+  /*
+ <Person
+        click={this.switchNameHandler}
+        name={this.state.persons[0].name}
+        age={this.state.persons[0].age} ></Person>
+      <Person name={this.state.persons[1].name}
+        age={this.state.persons[1].age}
+        changed={this.nameChangeHandler} />
+      <Person name={this.state.persons[2].name}
+        age={this.state.persons[2].age} ></Person>
 
-  }
-
+  */
   render() {
 
    let persons= null ; 
@@ -48,13 +64,12 @@ class App extends Component {
 
     persons=(
        <div>
-       {this.state.persons.map(person=> {
+       {this.state.persons.map(person=>{
         return <Person name= {person.name}
-       age= {person.age}
-       click = {this.deletePersonHandler.bind(this, person.index)} />  
+       age= {person.age} />  
 
        })}
-      
+      }
       </div> 
     );
    }
