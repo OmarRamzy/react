@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person.js';
+import person from './Person/Person.js';
 
 class App extends Component {
 
@@ -43,29 +44,42 @@ class App extends Component {
   }
 
   // <button className="btn btn-danger" onClick={this.switchNameHandler.bind(this , 'Ahmed')} >Switch names</button>
+  /*
+ <Person
+        click={this.switchNameHandler}
+        name={this.state.persons[0].name}
+        age={this.state.persons[0].age} ></Person>
+      <Person name={this.state.persons[1].name}
+        age={this.state.persons[1].age}
+        changed={this.nameChangeHandler} />
+      <Person name={this.state.persons[2].name}
+        age={this.state.persons[2].age} ></Person>
+
+  */
   render() {
+
+   let persons= null ; 
+   
+   if (this.state.showPersons){
+
+    persons=(
+       <div>
+       {this.state.persons.map(person=>{
+        return <Person name= {person.name}
+       age= {person.age} />  
+
+       })}
+      }
+      </div> 
+    );
+   }
+
+
     return (
       <div className="Person">
-        <h1 >This is really working!</h1>
-        <button className="btn btn-danger" onClick={this.togglePersonsHandler} >Switch names</button>
-
-        {
-        this.state.showPersons ===true?
-          <div>
-            <Person
-              click={this.switchNameHandler}
-              name={this.state.persons[0].name}
-              age={this.state.persons[0].age} ></Person>
-            <Person name={this.state.persons[1].name}
-              age={this.state.persons[1].age}
-              changed={this.nameChangeHandler} />
-            <Person name={this.state.persons[2].name}
-              age={this.state.persons[2].age} ></Person>
-
-          </div> : null
-
-        }
-
+        <h1 >Hii, I'm Omar Ramzy!</h1>
+       <button className="btn btn-danger" onClick={this.togglePersonsHandler} >Switch names</button>
+        {persons}
 
       </div>
     );
