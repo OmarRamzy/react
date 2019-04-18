@@ -34,7 +34,7 @@ class App extends Component {
   }
 
   deletePersonHandler= (personIndex) =>{
-    const persons = this.state.persons;
+    const persons = [...this.state.persons];
     persons.splice(personIndex, 1) ;
     this.setState({persons:persons})
 
@@ -63,7 +63,7 @@ class App extends Component {
     return (
       <div className="Person">
         <h1 >Hii, I'm Omar Ramzy!</h1>
-       <button className="btn btn-danger" onClick={this.togglePersonsHandler} >Switch names</button>
+       <button className="btn btn-danger" onClick={this.togglePersonsHandler} >Show names</button>
         {persons}
 
       </div>
